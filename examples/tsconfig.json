@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "aiida-react-components-base": ["../src"]
+    }
+  },
+  "include": ["src"]
+}
