@@ -1,6 +1,6 @@
 {
   "name": "aiida-react-components-base",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -15,9 +15,9 @@
   },
   "peerDependencies": {
     "plotly.js": "^2.35.2",
-    "react": "^17.0.0 || ^18.0.0",
+    "react": ">=17.0.0 <20.0.0",
+    "react-dom": ">=17.0.0 <20.0.0",
     "react-bootstrap": "^2.10.10",
-    "react-dom": "^17.0.0 || ^18.0.0",
     "react-plotly.js": "^2.6.0",
     "weas": "^0.1.51"
   },
