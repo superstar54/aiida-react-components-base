@@ -1,0 +1,47 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  docs:
+    name: Documentation
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: "pip"
+          cache-dependency-path: |
+            **/requirements*.txt
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y pandoc
+          python -m pip install --upgrade pip
+          python -m pip install -r ./docs/requirements.txt
+      - name: Build docs
+        run: |
+          cd docs/source
+          python -m sphinx -T -E -b html -d ../build/doctrees -D language=en . ../build/html
+
+  unit-tests:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm run build
+      - run: npm test

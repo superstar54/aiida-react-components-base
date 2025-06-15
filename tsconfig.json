@@ -12,10 +12,12 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "ES2020"]
+    "lib": ["DOM", "ES2020"],
+    "types": ["jest", "node", "@testing-library/jest-dom"]
   },
   "include": [
     "src",
-    "stories"
+    "tests",
+    "jest.setup.js"
   ]
 }
